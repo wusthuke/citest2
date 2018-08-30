@@ -3,10 +3,8 @@
  */
 package com.huke.demo.simpleboot.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +16,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("users")
+@Slf4j
 public class UserController {
 
     @GetMapping("{id}")
@@ -27,5 +26,17 @@ public class UserController {
         userMap.put("name", "huke");
 
         return userMap;
+    }
+
+    @PostMapping("/webhook")
+    public Map create(@RequestBody Map<String, Object> params) {
+        log.info("get request: {}", params);
+        return params;
+    }
+
+    @PostMapping
+    public String createUser(@RequestBody User user) {
+
+        return user.getName() + " : " + user.getSex();
     }
 }
