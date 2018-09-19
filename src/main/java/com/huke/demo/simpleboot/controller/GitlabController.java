@@ -3,9 +3,11 @@
  */
 package com.huke.demo.simpleboot.controller;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -16,11 +18,13 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
+@RequestMapping("gitlab")
 public class GitlabController {
 
     @PostMapping
+    @RequestMapping("webhook")
     public String webhook(@RequestBody Map params) {
-        log.info("Gitlab Webhook : {}", params);
+        log.info("Gitlab Webhook : {}", JSON.toJSONString(params));
         return "SUCCESS";
     }
 }

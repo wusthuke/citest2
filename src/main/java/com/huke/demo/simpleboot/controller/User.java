@@ -3,10 +3,11 @@
  */
 package com.huke.demo.simpleboot.controller;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
+import sun.jvm.hotspot.debugger.Address;
 
 /**
  * @author huke
@@ -16,13 +17,15 @@ import java.util.List;
 @Setter
 public class User {
 
+    @JSONField(name = "user_name")
     private String name;
 
     private Sex sex;
 
-    List<CheckRunAnnotation> annotations;
+    @JsonProperty(value = "user_address")
+    private String address;
 
-    enum Sex {
+    public enum Sex {
         man,
 
         woman
