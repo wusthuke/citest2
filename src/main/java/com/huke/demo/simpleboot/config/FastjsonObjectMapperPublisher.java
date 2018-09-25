@@ -9,11 +9,9 @@ import com.fasterxml.jackson.databind.PropertyName;
 import com.fasterxml.jackson.databind.introspect.Annotated;
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import springfox.documentation.schema.configuration.ObjectMapperConfigured;
 
@@ -21,13 +19,12 @@ import javax.annotation.PostConstruct;
 import java.lang.annotation.Annotation;
 
 /**
- *
  * @author huke
  * @version $Id: FastjsonObjectMapperPublisher.java, v 0.1 2018年09月19日 上午11:35 huke Exp $
  */
 @Component
 @DependsOn("requestMappingHandlerAdapter")
-public class FastjsonObjectMapperPublisher implements InitializingBean, Ordered {
+public class FastjsonObjectMapperPublisher {
 
     private ObjectMapperConfigured objectMapperConfigured;
 
@@ -77,15 +74,5 @@ public class FastjsonObjectMapperPublisher implements InitializingBean, Ordered 
 
         this.objectMapperConfigured = new ObjectMapperConfigured(applicationContext, objectMapper);
         applicationContext.publishEvent(objectMapperConfigured);
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        applicationContext.publishEvent(objectMapperConfigured);
-    }
-
-    @Override
-    public int getOrder() {
-        return LOWEST_PRECEDENCE;
     }
 }

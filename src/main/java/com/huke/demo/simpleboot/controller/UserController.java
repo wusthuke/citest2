@@ -6,6 +6,7 @@ package com.huke.demo.simpleboot.controller;
 import com.huke.demo.simpleboot.controller.exception.UserNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,7 +31,7 @@ public class UserController {
 
     @ApiOperation(value = "获取用户列表", notes = "获取所有用户信息")
     @GetMapping("{id}")
-    public User get(@PathVariable("id") long userId) {
+    public User get(@ApiParam("用户ID") @PathVariable("id") long userId) {
         User user = new User();
         user.setName("user" + userId);
         user.setSex(User.Sex.man);

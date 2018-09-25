@@ -5,9 +5,9 @@ package com.huke.demo.simpleboot.controller;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import sun.jvm.hotspot.debugger.Address;
 
 /**
  * @author huke
@@ -17,11 +17,14 @@ import sun.jvm.hotspot.debugger.Address;
 @Setter
 public class User {
 
+    @ApiModelProperty("姓名")
     @JSONField(name = "user_name")
     private String name;
 
+    @ApiModelProperty("性别")
     private Sex sex;
 
+    @ApiModelProperty("用户地址")
     @JsonProperty(value = "user_address")
     private String address;
 
