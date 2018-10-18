@@ -3,6 +3,7 @@
  */
 package com.huke.demo.simpleboot.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.huke.demo.simpleboot.controller.exception.UserNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +47,9 @@ public class UserController {
 
     @PostMapping("/webhook")
     public Map create(@RequestHeader Map headers, @RequestBody Map<String, Object> params) {
+        System.out.println(JSON.toJSONString(params));
+        System.out.println(JSON.toJSONString(headers));
+        System.out.println("hello");
         return params;
     }
 
