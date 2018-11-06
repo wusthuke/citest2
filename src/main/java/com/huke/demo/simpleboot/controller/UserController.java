@@ -4,7 +4,6 @@
 package com.huke.demo.simpleboot.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.huke.demo.simpleboot.controller.exception.UserNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -38,11 +37,6 @@ public class UserController {
         user.setSex(User.Sex.man);
         user.setAddress("hello");
         return user;
-    }
-
-    @GetMapping("/not")
-    public String notFound() {
-        throw new UserNotFoundException();
     }
 
     @PostMapping("/webhook")
